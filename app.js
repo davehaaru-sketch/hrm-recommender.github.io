@@ -36,11 +36,7 @@ async function loadIdeas() {
       clearSavedBtn: document.getElementById('clearSavedBtn'),
       quickKeywords: document.getElementById('quickKeywords'),
       scrollSavedBtn: document.getElementById('scrollSavedBtn'),
-      openAllIdeasBtn: document.getElementById('openAllIdeasBtn'),
       openShareGuideBtn: document.getElementById('openShareGuideBtn'),
-      allIdeasModal: document.getElementById('allIdeasModal'),
-      allIdeasList: document.getElementById('allIdeasList'),
-      closeAllIdeasBtn: document.getElementById('closeAllIdeasBtn'),
       shareGuideModal: document.getElementById('shareGuideModal'),
       closeShareGuideBtn: document.getElementById('closeShareGuideBtn'),
       savedSection: document.getElementById('savedSection'),
@@ -372,41 +368,6 @@ async function loadIdeas() {
       showStatus('조건을 랜덤 설정해 추천했습니다.');
     }
 
-    function renderAllIdeas() {
-      if (!ideas.length) {
-        els.allIdeasList.innerHTML = '<div class="empty">표시할 아이디어가 없습니다.</div>';
-        return;
-      }
-
-      els.allIdeasList.innerHTML = ideas.map((item, index) => `
-        <div class="all-idea-card">
-          <div class="all-idea-head">
-            <h4>${index + 1}. ${escapeHtml(item.title)}</h4>
-            <button class="summary-toggle" data-action="toggle-summary" data-index="${index}">아이디어 요약</button>
-          </div>
-          <div class="saved-meta">
-            <span class="tag">${escapeHtml(item.topic)}</span>
-            <span class="tag">${escapeHtml(item.type)}</span>
-            <span class="tag">${escapeHtml(item.difficulty)}</span>
-            <span class="tag">${escapeHtml(item.team)}</span>
-            <span class="tag">${escapeHtml(item.duration)}</span>
-          </div>
-          <div class="summary-text" id="summary-${index}">${escapeHtml(item.summary)}</div>
-        </div>
-      `).join('');
-    }
-
-    function openAllIdeasModal() {
-      renderAllIdeas();
-      els.allIdeasModal.classList.add('open');
-      els.allIdeasModal.setAttribute('aria-hidden', 'false');
-    }
-
-    function closeAllIdeasModal() {
-      els.allIdeasModal.classList.remove('open');
-      els.allIdeasModal.setAttribute('aria-hidden', 'true');
-    }
-
     function openModal() {
       els.shareGuideModal.classList.add('open');
       els.shareGuideModal.setAttribute('aria-hidden', 'false');
@@ -482,30 +443,13 @@ async function loadIdeas() {
     els.scrollSavedBtn.addEventListener('click', () => {
       els.savedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
-    els.openAllIdeasBtn.addEventListener('click', openAllIdeasModal);
     els.openShareGuideBtn.addEventListener('click', openModal);
-    els.closeAllIdeasBtn.addEventListener('click', closeAllIdeasModal);
     els.closeShareGuideBtn.addEventListener('click', closeModal);
-    els.allIdeasList.addEventListener('click', (e) => {
-      const btn = e.target.closest('button[data-action="toggle-summary"]');
-      if (!btn) return;
-      const idx = btn.dataset.index;
-      const summaryEl = document.getElementById(`summary-${idx}`);
-      if (!summaryEl) return;
-      summaryEl.classList.toggle('open');
-      btn.textContent = summaryEl.classList.contains('open') ? '요약 닫기' : '아이디어 요약';
-    });
     els.shareGuideModal.addEventListener('click', (e) => {
       if (e.target === els.shareGuideModal) closeModal();
     });
-    els.allIdeasModal.addEventListener('click', (e) => {
-      if (e.target === els.allIdeasModal) closeAllIdeasModal();
-    });
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeModal();
-        closeAllIdeasModal();
-      }
+      if (e.key === 'Escape') closeModal();
     });
 
 
