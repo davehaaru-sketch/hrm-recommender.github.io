@@ -1,15 +1,9 @@
 let ideas = [];
 
 async function loadIdeas() {
-  const response = await fetch('ideas.json?v=20260309a', { cache: 'no-store' });
+  const response = await fetch('ideas.json', { cache: 'no-store' });
   if (!response.ok) throw new Error('ideas.json 로드 실패');
-  const rawText = await response.text();
-  let data;
-  try {
-    data = JSON.parse(rawText);
-  } catch (e) {
-    throw new Error('ideas.json 파싱 실패');
-  }
+  const data = await response.json();
   if (!Array.isArray(data)) throw new Error('ideas 데이터 형식 오류');
   return data;
 }
@@ -74,13 +68,6 @@ async function loadIdeas() {
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#039;');
-    }
-
-
-
-    function bind(el, eventName, handler) {
-      if (!el) return;
-      el.addEventListener(eventName, handler);
     }
 
     function getFormState() {
@@ -437,14 +424,14 @@ async function loadIdeas() {
       els.shareGuideModal.setAttribute('aria-hidden', 'true');
     }
 
-    bind(els.recommendBtn, 'click', () => renderIdea(getRecommendation()));
-    bind(els.anotherBtn, 'click', () => renderIdea(getRecommendation()));
-    bind(els.randomSetBtn, 'click', applyRandomSet);
-    bind(els.saveBtn, 'click', saveCurrentIdea);
-    bind(els.copyBtn, 'click', copyCurrentIdea);
-    bind(els.shareBtn, 'click', shareCurrentState);
-    bind(els.clearFormBtn, 'click', clearForm);
-    bind(els.clearSavedBtn, 'click', () => {
+    els.recommendBtn.addEventListener('click', () => renderIdea(getRecommendation()));
+    els.anotherBtn.addEventListener('click', () => renderIdea(getRecommendation()));
+    els.randomSetBtn.addEventListener('click', applyRandomSet);
+    els.saveBtn.addEventListener('click', saveCurrentIdea);
+    els.copyBtn.addEventListener('click', copyCurrentIdea);
+    els.shareBtn.addEventListener('click', shareCurrentState);
+    els.clearFormBtn.addEventListener('click', clearForm);
+    els.clearSavedBtn.addEventListener('click', () => {
       if (!state.savedIdeas.length) {
         showStatus('비울 저장 목록이 없습니다.');
         return;
@@ -457,7 +444,7 @@ async function loadIdeas() {
       showStatus('저장한 아이디어를 모두 비웠습니다.');
     });
 
-    bind(els.savedList, 'click', async (e) => {
+    els.savedList.addEventListener('click', async (e) => {
       const btn = e.target.closest('button[data-action]');
       if (!btn) return;
       const id = btn.dataset.id;
@@ -473,7 +460,7 @@ async function loadIdeas() {
       }
     });
 
-    bind(els.quickKeywords, 'click', (e) => {
+    els.quickKeywords.addEventListener('click', (e) => {
       const chip = e.target.closest('.chip');
       if (!chip) return;
       const text = chip.textContent.trim();
@@ -486,11 +473,11 @@ async function loadIdeas() {
       els.keyword.focus();
     });
 
-    [els.topic, els.activityType, els.difficulty, els.teamSize, els.duration].filter(Boolean).forEach(el => {
+    [els.topic, els.activityType, els.difficulty, els.teamSize, els.duration].forEach(el => {
       el.addEventListener('change', () => renderIdea(getRecommendation()));
     });
 
-    [els.keyword, els.customNeed].filter(Boolean).forEach(el => {
+    [els.keyword, els.customNeed].forEach(el => {
       el.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
           e.preventDefault();
@@ -499,8 +486,8 @@ async function loadIdeas() {
       });
     });
 
-    bind(els.scrollSavedBtn, 'click', () => {
-      if (els.savedSection) els.savedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    els.scrollSavedBtn.addEventListener('click', () => {
+      els.savedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
     if (els.openAllIdeasBtn) els.openAllIdeasBtn.addEventListener('click', openAllIdeasModal);
     if (els.openShareGuideBtn) els.openShareGuideBtn.addEventListener('click', openModal);
