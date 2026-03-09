@@ -1,0 +1,1238 @@
+diff --git a/index.html b/index.html
+index a445a50dc91c089f1d508475e66ce44ac685ae7a..71e9a45ce454192c4e9d09ffda0b5cb2eb6025dd 100644
+--- a/index.html
++++ b/index.html
+@@ -1,577 +1,61 @@
+ <!DOCTYPE html>
+ <html lang="ko">
+ <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta name="description" content="인공지능 시대 인적자원관리 수업을 위한 학생 참여형 수업 아이디어 추천기" />
+   <meta property="og:title" content="인공지능 시대 인적자원관리 | 수업 아이디어 추천기" />
+   <meta property="og:description" content="로그인 없이 누구나 접속해 수업 아이디어를 추천받고 저장·복사·공유할 수 있는 웹페이지" />
+   <meta property="og:type" content="website" />
+   <title>인공지능 시대 인적자원관리 | 수업 아이디어 추천기</title>
+-  <style>
+-    :root {
+-      --bg1: #0b1120;
+-      --bg2: #172554;
+-      --bg3: #1e293b;
+-      --card: rgba(255,255,255,0.11);
+-      --card-strong: rgba(255,255,255,0.16);
+-      --line: rgba(255,255,255,0.18);
+-      --text: #f8fafc;
+-      --muted: #cbd5e1;
+-      --accent: #38bdf8;
+-      --accent2: #8b5cf6;
+-      --accent3: #22c55e;
+-      --warn: #f59e0b;
+-      --danger: #ef4444;
+-      --shadow: 0 18px 60px rgba(0,0,0,0.34);
+-      --radius-xl: 30px;
+-      --radius-lg: 22px;
+-      --radius-md: 16px;
+-      --radius-sm: 12px;
+-      --maxw: 1280px;
+-    }
+-
+-    * { box-sizing: border-box; }
+-    html { scroll-behavior: smooth; }
+-
+-    body {
+-      margin: 0;
+-      font-family: "Pretendard", "Noto Sans KR", Arial, sans-serif;
+-      color: var(--text);
+-      background:
+-        radial-gradient(circle at 10% 10%, rgba(56,189,248,0.18), transparent 24%),
+-        radial-gradient(circle at 90% 8%, rgba(139,92,246,0.18), transparent 22%),
+-        radial-gradient(circle at 50% 100%, rgba(34,197,94,0.10), transparent 25%),
+-        linear-gradient(135deg, var(--bg1), var(--bg2) 45%, var(--bg3));
+-      min-height: 100vh;
+-    }
+-
+-    a { color: inherit; }
+-
+-    .wrap {
+-      width: min(var(--maxw), calc(100% - 28px));
+-      margin: 0 auto;
+-      padding: 20px 0 44px;
+-    }
+-
+-    .topbar {
+-      display: flex;
+-      justify-content: space-between;
+-      gap: 12px;
+-      align-items: center;
+-      margin-bottom: 16px;
+-      flex-wrap: wrap;
+-    }
+-
+-    .brand {
+-      display: flex;
+-      align-items: center;
+-      gap: 12px;
+-    }
+-
+-    .logo {
+-      width: 44px;
+-      height: 44px;
+-      border-radius: 14px;
+-      display: grid;
+-      place-items: center;
+-      font-weight: 800;
+-      background: linear-gradient(135deg, var(--accent), var(--accent2));
+-      box-shadow: var(--shadow);
+-    }
+-
+-    .brand-text strong {
+-      display: block;
+-      font-size: 16px;
+-    }
+-
+-    .brand-text span {
+-      display: block;
+-      color: var(--muted);
+-      font-size: 13px;
+-      margin-top: 2px;
+-    }
+-
+-    .top-actions {
+-      display: flex;
+-      gap: 10px;
+-      flex-wrap: wrap;
+-    }
+-
+-    .mini-btn {
+-      border: 1px solid var(--line);
+-      background: rgba(255,255,255,0.08);
+-      color: white;
+-      border-radius: 999px;
+-      padding: 10px 14px;
+-      font-size: 13px;
+-      cursor: pointer;
+-    }
+-
+-    .hero {
+-      border-radius: 34px;
+-      padding: 30px;
+-      background: linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
+-      border: 1px solid var(--line);
+-      box-shadow: var(--shadow);
+-      backdrop-filter: blur(14px);
+-    }
+-
+-    .hero-badge {
+-      display: inline-flex;
+-      align-items: center;
+-      gap: 8px;
+-      padding: 8px 14px;
+-      border-radius: 999px;
+-      border: 1px solid rgba(56,189,248,0.4);
+-      background: rgba(56,189,248,0.15);
+-      color: #e0f2fe;
+-      font-size: 14px;
+-      margin-bottom: 14px;
+-    }
+-
+-    h1 {
+-      margin: 0;
+-      font-size: clamp(30px, 4vw, 50px);
+-      line-height: 1.18;
+-      letter-spacing: -0.03em;
+-    }
+-
+-    .hero p {
+-      color: var(--muted);
+-      font-size: 17px;
+-      line-height: 1.75;
+-      margin: 12px 0 0;
+-      max-width: 980px;
+-    }
+-
+-    .hero-stats {
+-      display: grid;
+-      grid-template-columns: repeat(4, 1fr);
+-      gap: 12px;
+-      margin-top: 22px;
+-    }
+-
+-    .stat {
+-      padding: 16px;
+-      border-radius: 18px;
+-      background: rgba(255,255,255,0.08);
+-      border: 1px solid rgba(255,255,255,0.12);
+-    }
+-
+-    .stat strong {
+-      display: block;
+-      font-size: 22px;
+-      margin-bottom: 4px;
+-    }
+-
+-    .stat span {
+-      font-size: 13px;
+-      color: var(--muted);
+-      line-height: 1.5;
+-    }
+-
+-    .grid {
+-      display: grid;
+-      grid-template-columns: 1.1fr 0.9fr;
+-      gap: 18px;
+-      margin-top: 20px;
+-      align-items: start;
+-    }
+-
+-    .panel {
+-      background: var(--card);
+-      border: 1px solid var(--line);
+-      border-radius: var(--radius-xl);
+-      box-shadow: var(--shadow);
+-      padding: 22px;
+-      backdrop-filter: blur(12px);
+-    }
+-
+-    .section-title {
+-      display: flex;
+-      justify-content: space-between;
+-      gap: 12px;
+-      align-items: center;
+-      flex-wrap: wrap;
+-      margin-bottom: 14px;
+-    }
+-
+-    .section-title h2 {
+-      margin: 0;
+-      font-size: 22px;
+-    }
+-
+-    .subtext {
+-      margin-top: 6px;
+-      color: var(--muted);
+-      line-height: 1.7;
+-      font-size: 14px;
+-    }
+-
+-    .controls {
+-      display: grid;
+-      grid-template-columns: repeat(2, 1fr);
+-      gap: 14px;
+-      margin-top: 12px;
+-    }
+-
+-    .field label {
+-      display: block;
+-      margin-bottom: 7px;
+-      font-size: 14px;
+-      font-weight: 700;
+-      color: #e2e8f0;
+-    }
+-
+-    select, input[type="text"], textarea, button {
+-      width: 100%;
+-      border-radius: 15px;
+-      border: 1px solid rgba(255,255,255,0.16);
+-      padding: 14px 14px;
+-      font-size: 15px;
+-      color: white;
+-      background: rgba(15,23,42,0.72);
+-      outline: none;
+-    }
+-
+-    select:focus, input[type="text"]:focus, textarea:focus, button:focus {
+-      border-color: rgba(56,189,248,0.9);
+-      box-shadow: 0 0 0 4px rgba(56,189,248,0.14);
+-    }
+-
+-    textarea {
+-      min-height: 100px;
+-      resize: vertical;
+-      line-height: 1.6;
+-    }
+-
+-    .full { grid-column: 1 / -1; }
+-
+-    .chips {
+-      display: flex;
+-      gap: 8px;
+-      flex-wrap: wrap;
+-      margin-top: 10px;
+-    }
+-
+-    .chip {
+-      padding: 8px 12px;
+-      border-radius: 999px;
+-      background: rgba(255,255,255,0.08);
+-      border: 1px solid rgba(255,255,255,0.12);
+-      font-size: 13px;
+-      cursor: pointer;
+-      user-select: none;
+-    }
+-
+-    .chip:hover { background: rgba(255,255,255,0.12); }
+-
+-    .actions {
+-      display: grid;
+-      grid-template-columns: repeat(3, 1fr);
+-      gap: 10px;
+-      margin-top: 16px;
+-    }
+-
+-    button {
+-      cursor: pointer;
+-      font-weight: 800;
+-      transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
+-    }
+-
+-    button:hover { transform: translateY(-1px); }
+-
+-    .primary {
+-      background: linear-gradient(135deg, var(--accent), var(--accent2));
+-      border: none;
+-    }
+-
+-    .secondary {
+-      background: rgba(255,255,255,0.08);
+-    }
+-
+-    .ghost {
+-      background: rgba(34,197,94,0.10);
+-      border-color: rgba(34,197,94,0.35);
+-    }
+-
+-    .result-card {
+-      margin-top: 16px;
+-      padding: 22px;
+-      border-radius: 24px;
+-      background: linear-gradient(135deg, rgba(34,197,94,0.12), rgba(56,189,248,0.13), rgba(139,92,246,0.10));
+-      border: 1px solid rgba(255,255,255,0.12);
+-      min-height: 360px;
+-    }
+-
+-    .tag-row {
+-      display: flex;
+-      gap: 8px;
+-      flex-wrap: wrap;
+-      margin-bottom: 16px;
+-    }
+-
+-    .tag {
+-      padding: 6px 10px;
+-      border-radius: 999px;
+-      font-size: 12px;
+-      border: 1px solid rgba(255,255,255,0.14);
+-      background: rgba(255,255,255,0.10);
+-      color: white;
+-    }
+-
+-    .idea-title {
+-      font-size: clamp(24px, 3vw, 34px);
+-      line-height: 1.3;
+-      margin: 8px 0;
+-      letter-spacing: -0.02em;
+-    }
+-
+-    .idea-sub {
+-      color: #e2e8f0;
+-      line-height: 1.75;
+-      font-size: 16px;
+-      margin-bottom: 14px;
+-    }
+-
+-    .detail {
+-      display: grid;
+-      gap: 10px;
+-      margin-top: 12px;
+-    }
+-
+-    .detail-item {
+-      background: rgba(15,23,42,0.34);
+-      border: 1px solid rgba(255,255,255,0.08);
+-      border-radius: 15px;
+-      padding: 13px 14px;
+-      line-height: 1.7;
+-      color: #f1f5f9;
+-    }
+-
+-    .detail-item strong {
+-      color: #bae6fd;
+-      display: inline-block;
+-      min-width: 92px;
+-    }
+-
+-    .toolbar {
+-      display: flex;
+-      gap: 10px;
+-      flex-wrap: wrap;
+-      margin-top: 16px;
+-    }
+-
+-    .toolbar button {
+-      width: auto;
+-      padding: 12px 14px;
+-      border-radius: 14px;
+-    }
+-
+-    .status {
+-      margin-top: 12px;
+-      font-size: 14px;
+-      color: #dbeafe;
+-      min-height: 22px;
+-    }
+-
+-    .side-stack {
+-      display: grid;
+-      gap: 18px;
+-    }
+-
+-    .card-list {
+-      display: grid;
+-      gap: 10px;
+-      margin-top: 14px;
+-    }
+-
+-    .saved-card {
+-      border-radius: 18px;
+-      background: rgba(255,255,255,0.06);
+-      border: 1px solid rgba(255,255,255,0.10);
+-      padding: 14px;
+-    }
+-
+-    .saved-card h4 {
+-      margin: 0 0 8px;
+-      font-size: 16px;
+-      line-height: 1.5;
+-    }
+-
+-    .saved-meta {
+-      display: flex;
+-      gap: 6px;
+-      flex-wrap: wrap;
+-      margin-bottom: 8px;
+-    }
+-
+-    .saved-desc {
+-      color: var(--muted);
+-      line-height: 1.6;
+-      font-size: 14px;
+-      margin-bottom: 10px;
+-    }
+-
+-    .saved-actions {
+-      display: flex;
+-      gap: 8px;
+-      flex-wrap: wrap;
+-    }
+-
+-    .saved-actions button {
+-      width: auto;
+-      padding: 9px 12px;
+-      font-size: 13px;
+-      border-radius: 12px;
+-    }
+-
+-    .empty {
+-      padding: 16px;
+-      border-radius: 16px;
+-      background: rgba(255,255,255,0.05);
+-      border: 1px dashed rgba(255,255,255,0.16);
+-      color: var(--muted);
+-      line-height: 1.7;
+-      font-size: 14px;
+-    }
+-
+-    .helper-list {
+-      display: grid;
+-      gap: 10px;
+-      margin-top: 14px;
+-    }
+-
+-    .helper-item {
+-      padding: 14px;
+-      border-radius: 16px;
+-      background: rgba(255,255,255,0.06);
+-      border: 1px solid rgba(255,255,255,0.10);
+-      line-height: 1.65;
+-      color: #e2e8f0;
+-      font-size: 14px;
+-    }
+-
+-    .footer-note {
+-      margin-top: 20px;
+-      text-align: center;
+-      color: var(--muted);
+-      font-size: 13px;
+-      line-height: 1.7;
+-    }
+-
+-    .modal {
+-      position: fixed;
+-      inset: 0;
+-      display: none;
+-      align-items: center;
+-      justify-content: center;
+-      padding: 16px;
+-      background: rgba(2,6,23,0.62);
+-      z-index: 50;
+-    }
+-
+-    .modal.open { display: flex; }
+-
+-    .modal-box {
+-      width: min(680px, 100%);
+-      border-radius: 24px;
+-      padding: 22px;
+-      background: linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,41,59,0.98));
+-      border: 1px solid rgba(255,255,255,0.14);
+-      box-shadow: var(--shadow);
+-    }
+-
+-    .modal-head {
+-      display: flex;
+-      justify-content: space-between;
+-      align-items: center;
+-      gap: 12px;
+-      margin-bottom: 12px;
+-    }
+-
+-    .modal-head h3 { margin: 0; }
+-
+-    .close-btn {
+-      width: auto;
+-      padding: 10px 12px;
+-      border-radius: 12px;
+-      background: rgba(255,255,255,0.08);
+-    }
+-
+-    .sr-only {
+-      position: absolute;
+-      width: 1px;
+-      height: 1px;
+-      padding: 0;
+-      margin: -1px;
+-      overflow: hidden;
+-      clip: rect(0, 0, 0, 0);
+-      border: 0;
+-    }
+-
+-    @media (max-width: 1024px) {
+-      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+-      .grid { grid-template-columns: 1fr; }
+-    }
+-
+-    @media (max-width: 720px) {
+-      .wrap { width: min(var(--maxw), calc(100% - 18px)); }
+-      .hero, .panel { padding: 18px; border-radius: 24px; }
+-      .controls { grid-template-columns: 1fr; }
+-      .actions { grid-template-columns: 1fr; }
+-      .hero-stats { grid-template-columns: 1fr; }
+-      .toolbar { flex-direction: column; }
+-      .toolbar button { width: 100%; }
+-    }
+-  </style>
++  <link rel="stylesheet" href="styles.css" />
+ </head>
+ <body>
+   <div class="wrap">
+     <div class="topbar">
+       <div class="brand">
+         <div class="logo">HR</div>
+         <div class="brand-text">
+           <strong>인공지능 시대 인적자원관리</strong>
+           <span>학생 참여형 수업 아이디어 추천기 · 로그인 없이 바로 사용</span>
+         </div>
+       </div>
+       <div class="top-actions">
+         <button class="mini-btn" id="scrollSavedBtn">저장한 아이디어 보기</button>
++        <button class="mini-btn" id="openAllIdeasBtn">전체 아이디어 보기</button>
+         <button class="mini-btn" id="openShareGuideBtn">배포 안내</button>
+       </div>
+     </div>
+ 
+     <section class="hero">
+       <div class="hero-badge">✨ 누구나 접속 · 저장 · 복사 · 공유 가능</div>
+       <h1>학생이 직접 탐색하는<br>수업 아이디어 추천 플랫폼</h1>
+       <p>이 페이지는 대학생이 직접 접속해 수업 활동, 발표 주제, 토론 아이디어, PBL 프로젝트 아이디어를 추천받고, 마음에 드는 결과를 저장하고, 복사하고, 친구와 공유할 수 있도록 설계된 공개형 웹페이지입니다.</p>
+       <p>로그인이 필요 없고, 저장 기능은 각 사용자의 브라우저에 자동 저장됩니다. 교수자는 LMS, 학과 홈페이지, GitHub Pages, Vercel 같은 무료 배포 서비스에 올려 전체 학생에게 배포할 수 있습니다.</p>
+       <div class="hero-stats">
+-        <div class="stat"><strong id="ideaCount">12+</strong><span>기본 수업 아이디어 수<br>주제·활동 방식 조합 추천</span></div>
++        <div class="stat"><strong id="ideaCount">50+</strong><span>기본 수업 아이디어 수<br>주제·활동 방식 조합 추천</span></div>
+         <div class="stat"><strong>0</strong><span>로그인 요구<br>바로 접속해서 사용 가능</span></div>
+         <div class="stat"><strong>저장</strong><span>브라우저에 내 아이디어 저장<br>수업 중 바로 다시 확인 가능</span></div>
+         <div class="stat"><strong>공유</strong><span>링크 복사 또는 추천문 복사<br>팀플·카톡방 공유에 적합</span></div>
+       </div>
+     </section>
+ 
+     <section class="grid">
+       <div class="panel">
+         <div class="section-title">
+           <div>
+             <h2>🎯 맞춤 수업 아이디어 추천</h2>
+             <div class="subtext">조건을 고르면 수업에 바로 적용 가능한 아이디어를 추천합니다. 일부는 랜덤 요소가 섞여 새로운 발상을 유도합니다.</div>
+           </div>
+         </div>
+ 
+         <div class="controls">
+           <div class="field">
+             <label for="topic">관심 주제</label>
+             <select id="topic">
+               <option value="랜덤">랜덤</option>
+               <option value="채용·선발">채용·선발</option>
+               <option value="교육훈련">교육훈련</option>
+               <option value="성과관리">성과관리</option>
+               <option value="보상·평가">보상·평가</option>
+               <option value="조직문화">조직문화</option>
+@@ -713,642 +197,40 @@
+             <div class="helper-item">조별 과제에서는 여러 명이 각자 추천 결과를 저장한 뒤, 가장 좋은 아이디어를 골라 팀 주제로 삼을 수 있습니다.</div>
+             <div class="helper-item">교수자는 수업 시작 5분 전에 즉석 활동을 뽑아 아이스브레이킹이나 토론 과제로 쓸 수 있습니다.</div>
+           </div>
+         </div>
+       </div>
+     </section>
+ 
+     <div class="footer-note">이 페이지는 단일 HTML 파일로 구성되어 배포가 쉽고, 학생이 직접 저장·복사·공유할 수 있도록 설계되었습니다.</div>
+   </div>
+ 
+   <div class="modal" id="shareGuideModal" aria-hidden="true">
+     <div class="modal-box">
+       <div class="modal-head">
+         <h3>배포 안내</h3>
+         <button class="close-btn" id="closeShareGuideBtn">닫기</button>
+       </div>
+       <div class="helper-list">
+         <div class="helper-item">1. 이 파일을 <strong>index.html</strong>로 저장합니다.</div>
+         <div class="helper-item">2. GitHub Pages 또는 Vercel에 업로드합니다.</div>
+         <div class="helper-item">3. 생성된 주소를 학생들에게 공유하면, 로그인 없이 바로 접속 가능합니다.</div>
+         <div class="helper-item">4. 학생이 저장한 내용은 서버가 아니라 각자 브라우저에만 저장됩니다.</div>
+       </div>
+     </div>
+   </div>
+ 
+-  <script>
+-    const ideas = [
+-      {
+-        title: "AI 면접관은 공정한가? 찬반 토론",
+-        topic: "채용·선발",
+-        type: "토론",
+-        difficulty: "기초",
+-        team: "소그룹",
+-        duration: "20분",
+-        summary: "AI 채용 도구의 효율성과 편향 문제를 함께 다루는 토론 활동입니다.",
+-        process: "팀별로 찬성·반대 입장을 나누고, 채용 속도·비용 절감 대 편향·설명가능성 문제를 근거로 토론합니다.",
+-        output: "토론 후 ‘공정한 AI 채용의 조건’ 3가지를 정리해 발표",
+-        why: "AI 시대 인적자원관리에서 채용 효율성과 윤리 문제를 동시에 다룰 수 있기 때문입니다."
+-      },
+-      {
+-        title: "우리 학과를 위한 AI 채용 공고 만들기",
+-        topic: "채용·선발",
+-        type: "실습",
+-        difficulty: "입문",
+-        team: "2인",
+-        duration: "20분",
+-        summary: "생성형 AI를 활용해 직무 중심 채용 공고를 설계하는 실습입니다.",
+-        process: "지원자상, 핵심 역량, 우대 조건, 직무 소개를 정하고 AI로 공고 초안을 만든 뒤 편향 표현을 수정합니다.",
+-        output: "개선 전·후 채용 공고 비교표 작성",
+-        why: "채용 문구 하나에도 기업의 HR 철학과 차별 위험이 드러나기 때문입니다."
+-      },
+-      {
+-        title: "AI가 추천한 교육훈련안, 믿어도 될까?",
+-        topic: "교육훈련",
+-        type: "케이스 분석",
+-        difficulty: "중간",
+-        team: "소그룹",
+-        duration: "30분",
+-        summary: "AI가 직원별 교육 프로그램을 추천하는 상황을 분석하는 활동입니다.",
+-        process: "가상의 기업 사례를 읽고, AI가 추천한 교육 계획의 장점과 위험 요소를 찾습니다.",
+-        output: "‘AI 교육추천 시스템 도입 체크리스트’ 작성",
+-        why: "AI는 맞춤형 학습을 돕지만 데이터 품질과 설명 책임 문제가 남기 때문입니다."
+-      },
+-      {
+-        title: "성과평가 알고리즘 설계자 되기",
+-        topic: "성과관리",
+-        type: "PBL",
+-        difficulty: "심화",
+-        team: "소그룹",
+-        duration: "50분",
+-        summary: "팀이 직접 AI 기반 성과평가 기준을 설계해 보는 문제해결형 활동입니다.",
+-        process: "가상의 스타트업에서 직원 성과를 데이터 기반으로 평가하려 합니다. 어떤 지표를 쓸지, 무엇이 왜곡될지 설계합니다.",
+-        output: "성과지표 표 + 예상 부작용 + 보완책 발표",
+-        why: "성과관리에 AI를 넣는 순간 측정 가능성만 강조되어 중요한 가치가 빠질 수 있기 때문입니다."
+-      },
+-      {
+-        title: "사람을 살리는 보상, AI가 설계할 수 있을까?",
+-        topic: "보상·평가",
+-        type: "토론",
+-        difficulty: "중간",
+-        team: "전원 참여",
+-        duration: "30분",
+-        summary: "AI 기반 보상 추천 시스템의 장단점을 따지는 토론입니다.",
+-        process: "개인 성과, 팀 기여, 협업 태도 등 무엇을 반영할지 논의하고 AI 자동화의 한계를 토론합니다.",
+-        output: "‘좋은 보상 시스템의 원칙’ 공동 선언문 작성",
+-        why: "보상은 숫자 계산을 넘어 동기부여와 신뢰의 문제이기 때문입니다."
+-      },
+-      {
+-        title: "조직문화 진단봇 만들기 아이디어 회의",
+-        topic: "조직문화",
+-        type: "발표",
+-        difficulty: "기초",
+-        team: "소그룹",
+-        duration: "20분",
+-        summary: "AI로 조직문화를 진단하는 서비스를 상상해 보는 발표 활동입니다.",
+-        process: "직원 만족, 심리적 안전감, 커뮤니케이션 문제를 어떤 질문과 데이터로 볼지 설계합니다.",
+-        output: "서비스 콘셉트 1장 발표",
+-        why: "조직문화는 보이지 않지만, AI 시대에도 HR이 놓치면 안 되는 핵심이기 때문입니다."
+-      },
+-      {
+-        title: "AI 팀장과 인간 팀장의 차이 롤플레이",
+-        topic: "리더십",
+-        type: "롤플레이",
+-        difficulty: "입문",
+-        team: "2인",
+-        duration: "10분",
+-        summary: "AI 팀장과 인간 팀장이 구성원을 대하는 방식을 비교 체험하는 활동입니다.",
+-        process: "한 학생은 AI 팀장, 다른 학생은 인간 팀장 역할을 맡아 피드백 장면을 연기합니다.",
+-        output: "좋은 리더십 요소 3가지 도출",
+-        why: "AI가 도울 수 있는 영역과 인간 리더만이 줄 수 있는 정서적 리더십을 구분해 볼 수 있기 때문입니다."
+-      },
+-      {
+-        title: "노사협의회에 생성형 AI를 도입한다면?",
+-        topic: "노사관계",
+-        type: "PBL",
+-        difficulty: "중간",
+-        team: "소그룹",
+-        duration: "50분",
+-        summary: "AI가 노사 의사소통을 도울 때 생길 기회와 갈등을 해결하는 문제해결 활동입니다.",
+-        process: "회의록 요약, 쟁점 분류, 합의안 초안 생성 등 활용 방안을 설계하고 위험도 함께 분석합니다.",
+-        output: "도입 로드맵과 리스크 관리표 작성",
+-        why: "노사관계는 효율성보다 신뢰와 절차적 정당성이 더 중요할 수 있기 때문입니다."
+-      },
+-      {
+-        title: "AI 윤리 딜레마 카드 토론",
+-        topic: "AI 윤리",
+-        type: "토론",
+-        difficulty: "입문",
+-        team: "전원 참여",
+-        duration: "10분",
+-        summary: "HR 장면에서 자주 생기는 AI 윤리 딜레마를 짧고 강하게 다루는 활동입니다.",
+-        process: "‘성과가 높지만 사생활 침해가 큰 모니터링 시스템’ 같은 딜레마 카드를 뽑고 의견을 나눕니다.",
+-        output: "가장 우선해야 할 윤리 원칙 1가지 선택",
+-        why: "짧은 시간 안에도 학생들의 관점을 크게 흔들 수 있는 주제이기 때문입니다."
+-      },
+-      {
+-        title: "미래 인재상 설계 워크숍",
+-        topic: "직무·역량",
+-        type: "실습",
+-        difficulty: "기초",
+-        team: "개인",
+-        duration: "20분",
+-        summary: "AI 시대에 필요한 직무 역량을 스스로 정의해 보는 활동입니다.",
+-        process: "학생이 관심 직무를 하나 정하고, AI와 협업할 때 필요한 기술·태도·판단력을 나눠 적습니다.",
+-        output: "개인별 미래 역량 캔버스 작성",
+-        why: "인적자원관리는 결국 어떤 사람을 키우고 뽑고 평가할 것인가의 문제이기 때문입니다."
+-      },
+-      {
+-        title: "생성형 AI를 활용한 면접 질문 개선 프로젝트",
+-        topic: "채용·선발",
+-        type: "PBL",
+-        difficulty: "중간",
+-        team: "소그룹",
+-        duration: "30분",
+-        summary: "좋은 면접 질문과 나쁜 면접 질문을 구분하고 AI로 개선해 보는 프로젝트입니다.",
+-        process: "차별 소지가 있는 질문, 역량 파악이 어려운 질문을 고치고 구조화된 면접 질문으로 재설계합니다.",
+-        output: "면접 질문 개선안 발표",
+-        why: "좋은 질문 설계는 AI 시대에도 인사관리의 기본 체력이라 할 수 있기 때문입니다."
+-      },
+-      {
+-        title: "HR 데이터 대시보드 기획 미션",
+-        topic: "성과관리",
+-        type: "발표",
+-        difficulty: "심화",
+-        team: "소그룹",
+-        duration: "50분",
+-        summary: "경영진에게 보여줄 HR 대시보드를 기획하는 활동입니다.",
+-        process: "채용, 이직, 성과, 교육 데이터를 어떤 화면으로 보여줄지 설계하고 핵심 지표를 선정합니다.",
+-        output: "대시보드 목업 발표",
+-        why: "AI와 데이터가 인사관리의 언어를 어떻게 바꾸는지 체감할 수 있기 때문입니다."
+-      },
+-      {
+-        title: "AI 온보딩 코치 설계 챌린지",
+-        topic: "교육훈련",
+-        type: "발표",
+-        difficulty: "중간",
+-        team: "소그룹",
+-        duration: "30분",
+-        summary: "신입사원 적응을 돕는 AI 온보딩 코치를 기획해 보는 활동입니다.",
+-        process: "입사 첫 주의 불안, 업무 적응, 조직문화 이해를 돕는 질문과 기능을 설계합니다.",
+-        output: "온보딩 코치 서비스 시나리오 발표",
+-        why: "AI는 채용 이후에도 인재 적응과 성장 관리에서 중요한 역할을 할 수 있기 때문입니다."
+-      },
+-      {
+-        title: "AI 시대의 좋은 HR은 무엇을 지켜야 하는가?",
+-        topic: "AI 윤리",
+-        type: "발표",
+-        difficulty: "심화",
+-        team: "개인",
+-        duration: "20분",
+-        summary: "효율성 중심의 AI 활용이 놓치기 쉬운 인간 존엄과 신뢰 문제를 정리하는 발표 활동입니다.",
+-        process: "학생이 스스로 하나의 윤리 원칙을 고르고 사례와 함께 짧은 논지를 구성합니다.",
+-        output: "1인 1논지 미니 발표",
+-        why: "AI를 잘 쓰는 것보다 무엇을 지켜야 하는지 이해하는 것이 더 중요할 수 있기 때문입니다."
+-      }
+-    ];
+-
+-    const storageKey = 'ai_hrm_saved_ideas_v2';
+-    const state = {
+-      lastIndex: -1,
+-      currentIdea: null,
+-      savedIdeas: loadSavedIdeas()
+-    };
+-
+-    const els = {
+-      topic: document.getElementById('topic'),
+-      activityType: document.getElementById('activityType'),
+-      difficulty: document.getElementById('difficulty'),
+-      teamSize: document.getElementById('teamSize'),
+-      duration: document.getElementById('duration'),
+-      keyword: document.getElementById('keyword'),
+-      customNeed: document.getElementById('customNeed'),
+-      recommendBtn: document.getElementById('recommendBtn'),
+-      anotherBtn: document.getElementById('anotherBtn'),
+-      randomSetBtn: document.getElementById('randomSetBtn'),
+-      resultCard: document.getElementById('resultCard'),
+-      saveBtn: document.getElementById('saveBtn'),
+-      copyBtn: document.getElementById('copyBtn'),
+-      shareBtn: document.getElementById('shareBtn'),
+-      clearFormBtn: document.getElementById('clearFormBtn'),
+-      statusMessage: document.getElementById('statusMessage'),
+-      savedList: document.getElementById('savedList'),
+-      clearSavedBtn: document.getElementById('clearSavedBtn'),
+-      quickKeywords: document.getElementById('quickKeywords'),
+-      scrollSavedBtn: document.getElementById('scrollSavedBtn'),
+-      openShareGuideBtn: document.getElementById('openShareGuideBtn'),
+-      shareGuideModal: document.getElementById('shareGuideModal'),
+-      closeShareGuideBtn: document.getElementById('closeShareGuideBtn'),
+-      savedSection: document.getElementById('savedSection'),
+-      ideaCount: document.getElementById('ideaCount')
+-    };
+-
+-    els.ideaCount.textContent = `${ideas.length}+`;
+-
+-    function loadSavedIdeas() {
+-      try {
+-        const raw = localStorage.getItem(storageKey);
+-        return raw ? JSON.parse(raw) : [];
+-      } catch (e) {
+-        return [];
+-      }
+-    }
+-
+-    function persistSavedIdeas() {
+-      localStorage.setItem(storageKey, JSON.stringify(state.savedIdeas));
+-    }
+-
+-    function escapeHtml(text = '') {
+-      return text
+-        .replace(/&/g, '&amp;')
+-        .replace(/</g, '&lt;')
+-        .replace(/>/g, '&gt;')
+-        .replace(/"/g, '&quot;')
+-        .replace(/'/g, '&#039;');
+-    }
+-
+-    function getFormState() {
+-      return {
+-        topic: els.topic.value,
+-        activityType: els.activityType.value,
+-        difficulty: els.difficulty.value,
+-        teamSize: els.teamSize.value,
+-        duration: els.duration.value,
+-        keyword: els.keyword.value.trim(),
+-        customNeed: els.customNeed.value.trim()
+-      };
+-    }
+-
+-    function scoreIdea(idea, form) {
+-      let score = 0;
+-      if (form.topic !== '랜덤' && idea.topic === form.topic) score += 4;
+-      if (form.activityType !== '랜덤' && idea.type === form.activityType) score += 4;
+-      if (form.difficulty !== '랜덤' && idea.difficulty === form.difficulty) score += 3;
+-      if (form.teamSize !== '랜덤' && idea.team === form.teamSize) score += 2;
+-      if (form.duration !== '랜덤' && idea.duration === form.duration) score += 2;
+-
+-      const keyword = form.keyword.toLowerCase();
+-      if (keyword) {
+-        const text = `${idea.title} ${idea.summary} ${idea.process} ${idea.output} ${idea.why}`.toLowerCase();
+-        keyword.split(',').map(v => v.trim()).filter(Boolean).forEach(piece => {
+-          if (text.includes(piece)) score += 2;
+-        });
+-      }
+-
+-      const custom = form.customNeed.toLowerCase();
+-      if (custom) {
+-        const text = `${idea.title} ${idea.summary} ${idea.process} ${idea.output} ${idea.why} ${idea.topic} ${idea.type} ${idea.difficulty}`.toLowerCase();
+-        custom.split(/[\s,]+/).filter(v => v.length >= 2).forEach(piece => {
+-          if (text.includes(piece)) score += 0.7;
+-        });
+-      }
+-
+-      score += Math.random() * 1.25;
+-      return score;
+-    }
+-
+-    function getRecommendation() {
+-      const form = getFormState();
+-      const scored = ideas.map((idea, index) => ({ idea, index, score: scoreIdea(idea, form) }));
+-      scored.sort((a, b) => b.score - a.score);
+-      let pick = scored[0];
+-      if (pick && pick.index === state.lastIndex && scored.length > 1) pick = scored[1];
+-      state.lastIndex = pick.index;
+-      return pick.idea;
+-    }
+-
+-    function buildReasonNote(form) {
+-      const parts = [];
+-      if (form.topic !== '랜덤') parts.push(`주제 ${form.topic}`);
+-      if (form.activityType !== '랜덤') parts.push(`활동 방식 ${form.activityType}`);
+-      if (form.difficulty !== '랜덤') parts.push(`난이도 ${form.difficulty}`);
+-      if (form.teamSize !== '랜덤') parts.push(`진행 형태 ${form.teamSize}`);
+-      if (form.duration !== '랜덤') parts.push(`시간 ${form.duration}`);
+-      if (form.keyword) parts.push(`키워드 ${form.keyword}`);
+-      if (form.customNeed) parts.push(`사용자 요구 반영`);
+-      return parts.length ? `선택한 조건을 반영한 추천입니다: ${parts.join(' · ')}` : '조건을 자유롭게 조합한 탐색형 추천입니다.';
+-    }
+-
+-    function renderIdea(idea) {
+-      const form = getFormState();
+-      const extraTag = form.keyword ? `<span class="tag">키워드: ${escapeHtml(form.keyword)}</span>` : '';
+-      const customTag = form.customNeed ? `<span class="tag">맞춤요구 반영</span>` : '';
+-      const reasonNote = buildReasonNote(form);
+-      state.currentIdea = { ...idea, form, reasonNote, savedAt: new Date().toISOString() };
+-
+-      els.resultCard.innerHTML = `
+-        <div class="tag-row">
+-          <span class="tag">${escapeHtml(idea.topic)}</span>
+-          <span class="tag">${escapeHtml(idea.type)}</span>
+-          <span class="tag">${escapeHtml(idea.difficulty)}</span>
+-          <span class="tag">${escapeHtml(idea.team)}</span>
+-          <span class="tag">${escapeHtml(idea.duration)}</span>
+-          ${extraTag}
+-          ${customTag}
+-        </div>
+-        <div class="idea-title">${escapeHtml(idea.title)}</div>
+-        <div class="idea-sub">${escapeHtml(idea.summary)}</div>
+-        <div class="detail">
+-          <div class="detail-item"><strong>진행 방법</strong> ${escapeHtml(idea.process)}</div>
+-          <div class="detail-item"><strong>기대 산출물</strong> ${escapeHtml(idea.output)}</div>
+-          <div class="detail-item"><strong>추천 이유</strong> ${escapeHtml(idea.why)}</div>
+-          <div class="detail-item"><strong>조건 반영</strong> ${escapeHtml(reasonNote)}</div>
+-        </div>
+-      `;
+-    }
+-
+-    function showStatus(message, isError = false) {
+-      els.statusMessage.textContent = message;
+-      els.statusMessage.style.color = isError ? '#fecaca' : '#dbeafe';
+-      clearTimeout(showStatus.timer);
+-      showStatus.timer = setTimeout(() => {
+-        els.statusMessage.textContent = '';
+-      }, 2600);
+-    }
+-
+-    function formatIdeaText(item) {
+-      const form = item.form || {};
+-      return [
+-        '[인공지능 시대 인적자원관리 수업 아이디어 추천 결과]',
+-        '',
+-        `제목: ${item.title}`,
+-        `주제: ${item.topic}`,
+-        `활동 방식: ${item.type}`,
+-        `난이도: ${item.difficulty}`,
+-        `진행 형태: ${item.team}`,
+-        `시간: ${item.duration}`,
+-        '',
+-        `요약: ${item.summary}`,
+-        `진행 방법: ${item.process}`,
+-        `기대 산출물: ${item.output}`,
+-        `추천 이유: ${item.why}`,
+-        `조건 반영: ${item.reasonNote || ''}`,
+-        '',
+-        `[입력 조건]`,
+-        `관심 주제: ${form.topic || ''}`,
+-        `활동 방식: ${form.activityType || ''}`,
+-        `난이도: ${form.difficulty || ''}`,
+-        `진행 형태: ${form.teamSize || ''}`,
+-        `활동 시간: ${form.duration || ''}`,
+-        `추가 키워드: ${form.keyword || ''}`,
+-        `원하는 상황: ${form.customNeed || ''}`
+-      ].join('\n');
+-    }
+-
+-    async function copyText(text) {
+-      try {
+-        if (navigator.clipboard && window.isSecureContext) {
+-          await navigator.clipboard.writeText(text);
+-        } else {
+-          const ta = document.createElement('textarea');
+-          ta.value = text;
+-          document.body.appendChild(ta);
+-          ta.select();
+-          document.execCommand('copy');
+-          ta.remove();
+-        }
+-        return true;
+-      } catch (e) {
+-        return false;
+-      }
+-    }
+-
+-    function saveCurrentIdea() {
+-      if (!state.currentIdea) {
+-        showStatus('먼저 아이디어를 추천받아 주세요.', true);
+-        return;
+-      }
+-      const already = state.savedIdeas.find(item => item.title === state.currentIdea.title && JSON.stringify(item.form) === JSON.stringify(state.currentIdea.form));
+-      if (already) {
+-        showStatus('이미 저장된 아이디어입니다.');
+-        return;
+-      }
+-      state.savedIdeas.unshift({ ...state.currentIdea, id: Date.now().toString() });
+-      persistSavedIdeas();
+-      renderSavedIdeas();
+-      showStatus('현재 아이디어를 저장했습니다.');
+-    }
+ 
+-    function renderSavedIdeas() {
+-      if (!state.savedIdeas.length) {
+-        els.savedList.innerHTML = '<div class="empty">아직 저장한 아이디어가 없습니다. 추천을 받은 뒤 <strong>현재 아이디어 저장</strong> 버튼을 눌러 보세요.</div>';
+-        return;
+-      }
+ 
+-      els.savedList.innerHTML = state.savedIdeas.map(item => `
+-        <div class="saved-card">
+-          <h4>${escapeHtml(item.title)}</h4>
+-          <div class="saved-meta">
+-            <span class="tag">${escapeHtml(item.topic)}</span>
+-            <span class="tag">${escapeHtml(item.type)}</span>
+-            <span class="tag">${escapeHtml(item.difficulty)}</span>
+-          </div>
+-          <div class="saved-desc">${escapeHtml(item.summary)}</div>
+-          <div class="saved-actions">
+-            <button class="secondary" data-action="load" data-id="${item.id}">불러오기</button>
+-            <button class="secondary" data-action="copy" data-id="${item.id}">복사</button>
+-            <button class="secondary" data-action="remove" data-id="${item.id}">삭제</button>
+-          </div>
+-        </div>
+-      `).join('');
+-    }
+-
+-    function applyForm(form = {}) {
+-      els.topic.value = form.topic || '랜덤';
+-      els.activityType.value = form.activityType || '랜덤';
+-      els.difficulty.value = form.difficulty || '랜덤';
+-      els.teamSize.value = form.teamSize || '랜덤';
+-      els.duration.value = form.duration || '랜덤';
+-      els.keyword.value = form.keyword || '';
+-      els.customNeed.value = form.customNeed || '';
+-    }
+-
+-    function loadSavedIdeaById(id) {
+-      const item = state.savedIdeas.find(v => v.id === id);
+-      if (!item) return;
+-      applyForm(item.form);
+-      state.currentIdea = item;
+-      renderIdea(item);
+-      window.scrollTo({ top: 0, behavior: 'smooth' });
+-      showStatus('저장한 아이디어를 불러왔습니다.');
+-    }
+-
+-    async function copyCurrentIdea() {
+-      if (!state.currentIdea) {
+-        showStatus('먼저 아이디어를 추천받아 주세요.', true);
+-        return;
+-      }
+-      const ok = await copyText(formatIdeaText(state.currentIdea));
+-      showStatus(ok ? '추천 결과를 복사했습니다.' : '복사에 실패했습니다.', !ok);
+-    }
+-
+-    function removeSavedIdea(id) {
+-      state.savedIdeas = state.savedIdeas.filter(v => v.id !== id);
+-      persistSavedIdeas();
+-      renderSavedIdeas();
+-      showStatus('저장한 아이디어를 삭제했습니다.');
+-    }
+-
+-    function buildShareUrl() {
+-      const form = getFormState();
+-      const params = new URLSearchParams();
+-      if (form.topic && form.topic !== '랜덤') params.set('topic', form.topic);
+-      if (form.activityType && form.activityType !== '랜덤') params.set('activityType', form.activityType);
+-      if (form.difficulty && form.difficulty !== '랜덤') params.set('difficulty', form.difficulty);
+-      if (form.teamSize && form.teamSize !== '랜덤') params.set('teamSize', form.teamSize);
+-      if (form.duration && form.duration !== '랜덤') params.set('duration', form.duration);
+-      if (form.keyword) params.set('keyword', form.keyword);
+-      if (form.customNeed) params.set('customNeed', form.customNeed);
+-      return `${location.origin}${location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
+-    }
+-
+-    async function shareCurrentState() {
+-      const url = buildShareUrl();
+-      const text = '인공지능 시대 인적자원관리 수업 아이디어 추천기 링크를 공유합니다.';
+-
+-      if (navigator.share) {
+-        try {
+-          await navigator.share({ title: document.title, text, url });
+-          showStatus('공유 창을 열었습니다.');
+-          return;
+-        } catch (e) {}
+-      }
+-
+-      const ok = await copyText(url);
+-      showStatus(ok ? '공유 링크를 복사했습니다.' : '링크 복사에 실패했습니다.', !ok);
+-    }
+-
+-    function loadQueryToForm() {
+-      const params = new URLSearchParams(location.search);
+-      const form = {
+-        topic: params.get('topic') || '랜덤',
+-        activityType: params.get('activityType') || '랜덤',
+-        difficulty: params.get('difficulty') || '랜덤',
+-        teamSize: params.get('teamSize') || '랜덤',
+-        duration: params.get('duration') || '랜덤',
+-        keyword: params.get('keyword') || '',
+-        customNeed: params.get('customNeed') || ''
+-      };
+-      applyForm(form);
+-    }
+-
+-    function clearForm() {
+-      applyForm({});
+-      state.currentIdea = null;
+-      state.lastIndex = -1;
+-      els.resultCard.innerHTML = `
+-        <div class="tag-row">
+-          <span class="tag">초기화 완료</span>
+-          <span class="tag">다시 추천 가능</span>
+-        </div>
+-        <div class="idea-title">조건이 초기화되었습니다</div>
+-        <div class="idea-sub">다시 조건을 고르거나 바로 추천 버튼을 눌러 새로운 아이디어를 받아 보세요.</div>
+-      `;
+-      history.replaceState({}, '', location.pathname);
+-      showStatus('입력 조건을 초기화했습니다.');
+-    }
+-
+-    function randomPick(selectEl) {
+-      const options = Array.from(selectEl.options).slice(1);
+-      if (!options.length) return;
+-      const chosen = options[Math.floor(Math.random() * options.length)];
+-      selectEl.value = chosen.value;
+-    }
+-
+-    function applyRandomSet() {
+-      [els.topic, els.activityType, els.difficulty, els.teamSize, els.duration].forEach(randomPick);
+-      const sampleKeywords = ['생성형 AI', '공정성', 'HR 데이터', '중소기업', '조직문화', '피드백', '리더십'];
+-      els.keyword.value = sampleKeywords[Math.floor(Math.random() * sampleKeywords.length)];
+-      els.customNeed.value = '학생들이 실제 사례와 연결해 생각할 수 있는 활동이면 좋겠습니다.';
+-      renderIdea(getRecommendation());
+-      showStatus('조건을 랜덤 설정해 추천했습니다.');
+-    }
+-
+-    function openModal() {
+-      els.shareGuideModal.classList.add('open');
+-      els.shareGuideModal.setAttribute('aria-hidden', 'false');
+-    }
+-
+-    function closeModal() {
+-      els.shareGuideModal.classList.remove('open');
+-      els.shareGuideModal.setAttribute('aria-hidden', 'true');
+-    }
+-
+-    els.recommendBtn.addEventListener('click', () => renderIdea(getRecommendation()));
+-    els.anotherBtn.addEventListener('click', () => renderIdea(getRecommendation()));
+-    els.randomSetBtn.addEventListener('click', applyRandomSet);
+-    els.saveBtn.addEventListener('click', saveCurrentIdea);
+-    els.copyBtn.addEventListener('click', copyCurrentIdea);
+-    els.shareBtn.addEventListener('click', shareCurrentState);
+-    els.clearFormBtn.addEventListener('click', clearForm);
+-    els.clearSavedBtn.addEventListener('click', () => {
+-      if (!state.savedIdeas.length) {
+-        showStatus('비울 저장 목록이 없습니다.');
+-        return;
+-      }
+-      const ok = confirm('저장한 아이디어를 모두 비울까요?');
+-      if (!ok) return;
+-      state.savedIdeas = [];
+-      persistSavedIdeas();
+-      renderSavedIdeas();
+-      showStatus('저장한 아이디어를 모두 비웠습니다.');
+-    });
+-
+-    els.savedList.addEventListener('click', async (e) => {
+-      const btn = e.target.closest('button[data-action]');
+-      if (!btn) return;
+-      const id = btn.dataset.id;
+-      const action = btn.dataset.action;
+-      const item = state.savedIdeas.find(v => v.id === id);
+-      if (!item) return;
+-
+-      if (action === 'load') loadSavedIdeaById(id);
+-      if (action === 'remove') removeSavedIdea(id);
+-      if (action === 'copy') {
+-        const ok = await copyText(formatIdeaText(item));
+-        showStatus(ok ? '저장한 아이디어를 복사했습니다.' : '복사에 실패했습니다.', !ok);
+-      }
+-    });
+-
+-    els.quickKeywords.addEventListener('click', (e) => {
+-      const chip = e.target.closest('.chip');
+-      if (!chip) return;
+-      const text = chip.textContent.trim();
+-      const current = els.keyword.value.trim();
+-      if (!current) {
+-        els.keyword.value = text;
+-      } else if (!current.includes(text)) {
+-        els.keyword.value = `${current}, ${text}`;
+-      }
+-      els.keyword.focus();
+-    });
+-
+-    [els.topic, els.activityType, els.difficulty, els.teamSize, els.duration].forEach(el => {
+-      el.addEventListener('change', () => renderIdea(getRecommendation()));
+-    });
+-
+-    [els.keyword, els.customNeed].forEach(el => {
+-      el.addEventListener('keydown', (e) => {
+-        if (e.key === 'Enter' && !e.shiftKey) {
+-          e.preventDefault();
+-          renderIdea(getRecommendation());
+-        }
+-      });
+-    });
+-
+-    els.scrollSavedBtn.addEventListener('click', () => {
+-      els.savedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+-    });
+-    els.openShareGuideBtn.addEventListener('click', openModal);
+-    els.closeShareGuideBtn.addEventListener('click', closeModal);
+-    els.shareGuideModal.addEventListener('click', (e) => {
+-      if (e.target === els.shareGuideModal) closeModal();
+-    });
+-    document.addEventListener('keydown', (e) => {
+-      if (e.key === 'Escape') closeModal();
+-    });
++  <div class="modal" id="allIdeasModal" aria-hidden="true">
++    <div class="modal-box">
++      <div class="modal-head">
++        <h3>전체 아이디어 63개 보기</h3>
++        <button class="close-btn" id="closeAllIdeasBtn">닫기</button>
++      </div>
++      <div class="card-list all-ideas-list" id="allIdeasList"></div>
++    </div>
++  </div>
+ 
+-    loadQueryToForm();
+-    renderSavedIdeas();
+-  </script>
++  <script src="app.js" defer></script>
+ </body>
+ </html>
