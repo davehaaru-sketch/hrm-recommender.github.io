@@ -1,220 +1,27 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="인적자원관리 교과서 목차 기반 학생 참여형 과제 선택 페이지" />
-  <title>인적자원관리 과제 선택관 | 단일 HTML</title>
-  <style>
-    :root {
-      --bg1:#0b1120;--bg2:#1e293b;--card:rgba(255,255,255,.09);--line:rgba(255,255,255,.17);
-      --txt:#f8fafc;--muted:#cbd5e1;--acc:#38bdf8;--acc2:#8b5cf6;--ok:#22c55e;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;color:var(--txt);font-family:"Pretendard","Noto Sans KR",Arial,sans-serif;
-      background:linear-gradient(135deg,var(--bg1),var(--bg2));min-height:100vh}
-    .wrap{width:min(1300px,calc(100% - 24px));margin:0 auto;padding:18px 0 40px}
-    .hero,.panel{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px}
-    .hero h1{margin:8px 0 6px;font-size:clamp(26px,3vw,42px)}
-    .hero p{margin:6px 0;color:var(--muted);line-height:1.7}
-    .top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}
-    .badge{padding:8px 12px;border-radius:999px;border:1px solid rgba(56,189,248,.5);background:rgba(56,189,248,.16);font-size:13px}
-    .main{display:grid;grid-template-columns:330px 1fr;gap:14px;margin-top:14px}
-    .cat-btn{width:100%;text-align:left;background:rgba(255,255,255,.07);border:1px solid var(--line);color:white;
-      border-radius:14px;padding:12px;cursor:pointer;margin-bottom:8px;font-weight:700}
-    .cat-btn.active{border-color:rgba(56,189,248,.85);background:rgba(56,189,248,.18)}
-    .hint{font-size:13px;color:var(--muted);line-height:1.6}
-    .ideas-head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
-    .stat{font-size:13px;color:var(--muted)}
-    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-    .idea{background:rgba(15,23,42,.5);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:12px}
-    .idea h3{margin:0 0 8px;font-size:17px;line-height:1.5}
-    .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
-    .tag{font-size:12px;padding:5px 8px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}
-    .problem{font-size:14px;line-height:1.65;color:#e2e8f0;margin-bottom:10px}
-    .actions{display:flex;gap:8px;flex-wrap:wrap}
-    button{border:1px solid var(--line);background:rgba(255,255,255,.08);color:white;border-radius:11px;padding:8px 10px;cursor:pointer}
-    .choose{background:linear-gradient(135deg,var(--acc),var(--acc2));border:none;font-weight:800}
-    .detail{display:none;font-size:13px;line-height:1.6;color:var(--muted);margin-top:8px;padding-top:8px;border-top:1px dashed rgba(255,255,255,.2)}
-    .detail.open{display:block}
-    .selected-list{display:grid;gap:8px;margin-top:8px}
-    .selected-item{background:rgba(34,197,94,.11);border:1px solid rgba(34,197,94,.4);border-radius:12px;padding:10px}
-    .small{font-size:12px;color:var(--muted)}
-    .danger{border-color:rgba(239,68,68,.5);background:rgba(239,68,68,.12)}
-    @media (max-width: 980px){.main{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
-  </style>
+<meta charset="UTF-8">
+<title>수업 아이디어 추천</title>
+<link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <div class="wrap">
-    <section class="hero">
-      <div class="top">
-        <div class="badge">📘 인적자원관리 교과서 목차 기반 · 총 63개 과제</div>
-        <div class="small">추천형이 아니라 학생이 직접 눌러 선택하는 방식</div>
-      </div>
-      <h1>학생 참여형 인적자원관리 과제 선택관</h1>
-      <p>이 페이지는 단일 HTML 파일로 구성되어, 배포가 쉽고 수업에서 바로 사용할 수 있습니다.</p>
-      <p>교과서 목차 순서에 맞춰 유형별 과제를 분류했으며, 각 과제는 <strong>문제 상황</strong>을 상세히 제시합니다.</p>
-    </section>
 
-    <section class="main">
-      <aside class="panel">
-        <h2 style="margin:0 0 8px;font-size:20px;">목차별 유형</h2>
-        <div id="categoryButtons"></div>
-        <div class="hint">원하는 유형을 눌러 과제를 확인하세요. 각 과제 카드에서 <strong>과제로 선택</strong> 버튼을 누르면 오른쪽 하단의 선택 목록에 추가됩니다.</div>
-      </aside>
+<h1>수업 아이디어 추천</h1>
 
-      <div style="display:grid;gap:14px;">
-        <section class="panel">
-          <div class="ideas-head">
-            <h2 id="activeCategoryTitle" style="margin:0;font-size:22px;">과제 목록</h2>
-            <div class="stat" id="activeCategoryCount"></div>
-          </div>
-          <div id="ideasGrid" class="grid"></div>
-        </section>
+<button id="recommendBtn">추천받기</button> <button id="openAllIdeasBtn">전체 아이디어 보기</button>
 
-        <section class="panel">
-          <div class="ideas-head">
-            <h2 style="margin:0;font-size:20px;">내가 선택한 과제</h2>
-            <button id="clearSelectedBtn" class="danger">전체 비우기</button>
-          </div>
-          <div id="selectedList" class="selected-list"></div>
-        </section>
-      </div>
-    </section>
-  </div>
+<div id="result"></div>
 
-  <script>
-    const categories = [
-      '1장 인적자원관리의 이해','2장 직무관리','3장 인적자원계획·확보(채용·선발)','4장 교육훈련·인력개발',
-      '5장 성과관리','6장 보상관리','7장 노사관계·노동법','8장 조직문화·리더십','9장 디지털 인사관리·윤리'
-    ];
+<div id="allIdeasModal" style="display:none;">
+<h2>전체 아이디어</h2>
+<div id="allIdeasList"></div>
+<button id="closeModalBtn">닫기</button>
+</div>
 
-    const ideas = categories.flatMap((category, cIdx) => {
-      const seeds = [
-        ['신입 조기 퇴사', '입사 한 달 안에 퇴사자가 늘어나면서 팀 업무가 반복적으로 흔들리고 있습니다.'],
-        ['평가 불신', '평가 기준이 모호해 직원들이 결과를 납득하지 못하고 갈등이 커지고 있습니다.'],
-        ['채용 지연', '지원자는 있는데 채용 결정이 늦어져 현업 인력 공백이 장기화되고 있습니다.'],
-        ['교육 실효성 부족', '교육은 했지만 현장 성과로 이어지지 않아 예산 낭비라는 불만이 나옵니다.'],
-        ['의사소통 단절', '팀장과 구성원 사이 전달 누락이 잦아 같은 실수가 반복됩니다.'],
-        ['보상 형평성 논란', '비슷한 업무인데 임금 차이가 커서 구성원 불만이 누적되고 있습니다.'],
-        ['디지털 도구 혼선', '새 인사 시스템을 도입했지만 사용법이 달라 업무 속도가 오히려 느려졌습니다.']
-      ];
+<script src="app.js"></script>
 
-      return seeds.map((seed, i) => ({
-        id: `${cIdx+1}-${i+1}`,
-        category,
-        title: `${category} 과제 ${i+1}: ${seed[0]} 해결 설계`,
-        difficulty: ['입문','기초','중간','중간','기초','심화','입문'][i],
-        time: ['10분','20분','30분','30분','20분','50분','10분'][i],
-        team: ['개인','2인','소그룹','소그룹','2인','전원 참여','개인'][i],
-        problem: `${seed[1]} 특히 한국 중소기업에서는 인력 여유가 적어 한 번의 인사 판단 오류가 매출, 고객 대응, 조직 분위기까지 연쇄적으로 영향을 줄 수 있습니다. 학생은 실제 회사 상황을 가정해 원인과 해결책을 단계별로 설계해야 합니다.`,
-        task: '문제 원인 3가지 도출 → 즉시 실행안 2개와 중장기 개선안 1개 작성 → 실행 우선순위 선정',
-        output: '원인 분석표 1장, 실행 계획표 1장, 발표 요약 3문장'
-      }));
-    });
-
-    const state = {
-      activeCategory: categories[0],
-      selected: JSON.parse(localStorage.getItem('hrm_selected_tasks_v1') || '[]')
-    };
-
-    const els = {
-      categoryButtons: document.getElementById('categoryButtons'),
-      activeCategoryTitle: document.getElementById('activeCategoryTitle'),
-      activeCategoryCount: document.getElementById('activeCategoryCount'),
-      ideasGrid: document.getElementById('ideasGrid'),
-      selectedList: document.getElementById('selectedList'),
-      clearSelectedBtn: document.getElementById('clearSelectedBtn')
-    };
-
-    function persistSelected() {
-      localStorage.setItem('hrm_selected_tasks_v1', JSON.stringify(state.selected));
-    }
-
-    function renderCategories() {
-      els.categoryButtons.innerHTML = categories.map(cat => `
-        <button class="cat-btn ${cat === state.activeCategory ? 'active' : ''}" data-cat="${cat}">${cat}</button>
-      `).join('');
-    }
-
-    function renderIdeas() {
-      const list = ideas.filter(v => v.category === state.activeCategory);
-      els.activeCategoryTitle.textContent = state.activeCategory;
-      els.activeCategoryCount.textContent = `${list.length}개 과제`;
-
-      els.ideasGrid.innerHTML = list.map(item => `
-        <article class="idea">
-          <h3>${item.title}</h3>
-          <div class="tags">
-            <span class="tag">난이도 ${item.difficulty}</span>
-            <span class="tag">${item.time}</span>
-            <span class="tag">${item.team}</span>
-          </div>
-          <div class="problem"><strong>문제 상황</strong><br>${item.problem}</div>
-          <div class="actions">
-            <button class="choose" data-action="choose" data-id="${item.id}">과제로 선택</button>
-            <button data-action="detail" data-id="${item.id}">상세 보기</button>
-          </div>
-          <div class="detail" id="detail-${item.id}">
-            <strong>수행 과제</strong>: ${item.task}<br>
-            <strong>산출물</strong>: ${item.output}
-          </div>
-        </article>
-      `).join('');
-    }
-
-    function renderSelected() {
-      if (!state.selected.length) {
-        els.selectedList.innerHTML = '<div class="small">아직 선택한 과제가 없습니다. 위에서 과제를 선택해 보세요.</div>';
-        return;
-      }
-      els.selectedList.innerHTML = state.selected.map(item => `
-        <div class="selected-item">
-          <strong>${item.title}</strong>
-          <div class="small">${item.category} · ${item.time} · ${item.team}</div>
-        </div>
-      `).join('');
-    }
-
-    function chooseIdea(id) {
-      const found = ideas.find(v => v.id === id);
-      if (!found) return;
-      if (state.selected.some(v => v.id === id)) return;
-      state.selected.unshift(found);
-      persistSelected();
-      renderSelected();
-    }
-
-    els.categoryButtons.addEventListener('click', (e) => {
-      const btn = e.target.closest('button[data-cat]');
-      if (!btn) return;
-      state.activeCategory = btn.dataset.cat;
-      renderCategories();
-      renderIdeas();
-    });
-
-    els.ideasGrid.addEventListener('click', (e) => {
-      const btn = e.target.closest('button[data-action]');
-      if (!btn) return;
-      const id = btn.dataset.id;
-      if (btn.dataset.action === 'choose') chooseIdea(id);
-      if (btn.dataset.action === 'detail') {
-        const box = document.getElementById(`detail-${id}`);
-        if (!box) return;
-        box.classList.toggle('open');
-        btn.textContent = box.classList.contains('open') ? '상세 닫기' : '상세 보기';
-      }
-    });
-
-    els.clearSelectedBtn.addEventListener('click', () => {
-      state.selected = [];
-      persistSelected();
-      renderSelected();
-    });
-
-    renderCategories();
-    renderIdeas();
-    renderSelected();
-  </script>
 </body>
 </html>
