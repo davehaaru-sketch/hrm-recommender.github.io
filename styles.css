@@ -500,67 +500,7 @@
       border: 0;
     }
 
-    
-
-    .all-ideas-list {
-      max-height: 62vh;
-      overflow: auto;
-      padding-right: 4px;
-    }
-
-    .all-idea-card {
-      border-radius: 16px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.10);
-      padding: 14px;
-    }
-
-    .all-idea-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-bottom: 8px;
-    }
-
-    .all-idea-head h4 {
-      margin: 0;
-      font-size: 15px;
-      line-height: 1.5;
-    }
-
-    .summary-toggle {
-      width: auto;
-      padding: 8px 11px;
-      border-radius: 10px;
-      font-size: 13px;
-      background: rgba(56,189,248,0.16);
-      border: 1px solid rgba(56,189,248,0.4);
-    }
-
-    .summary-text {
-      margin-top: 8px;
-      font-size: 14px;
-      line-height: 1.7;
-      color: #e2e8f0;
-      display: none;
-    }
-
-    .summary-text.open { display: block; }
-
-
-
-    .current-summary-toggle {
-      margin-top: 2px;
-    }
-
-    .current-summary-text {
-      margin-top: 10px;
-      margin-bottom: 10px;
-    }
-
-@media (max-width: 1024px) {
+    @media (max-width: 1024px) {
       .hero-stats { grid-template-columns: repeat(2, 1fr); }
       .grid { grid-template-columns: 1fr; }
     }
